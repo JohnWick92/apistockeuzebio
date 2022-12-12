@@ -25,6 +25,10 @@ export class User {
     return this.props.password
   }
 
+  get token() {
+    return this.props.token
+  }
+
   constructor(props: UserProps) {
     this.props = props
   }
