@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model user {
+  code_pk  String @id
+  login    String @unique
+  password String
+  name     String
+  token String @unique
+}
+
+model history {
+  code_pk       String   @id
+  code_material String   @unique
+  description   String
+  batch         String   @unique
+  shelf_life    DateTime
+  quantity_used Int
+  date_of_use   DateTime
+}
+
+model material {
+  code_pk       String   @id
+  code_material String   @unique
+  description   String
+  batch         String
+  shelf_life    DateTime
+  amount        Int
+}
