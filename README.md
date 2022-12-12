@@ -2,7 +2,6 @@
 
 - Authors: JohnWick92, LinuzTorvalds
 
-
 * Developed in nodeJS with typescript
 
 ---
@@ -11,28 +10,29 @@
 
 ## Production
 
-* @prisma/client
-* bcryptjs
-* cors
-* dotenv
-* express
-* express-async-errors
-*  moment
+- @prisma/client
+- bcryptjs
+- cors
+- dotenv
+- express
+- express-async-errors
+- moment
 
 ---
+
 ## Developer
 
-* @types/cors
-* @types/express
-* @types/node
-* @typescript-eslint/eslint-plugin
-* @typescript-eslint/parser
-* eslint
-* husky
-* lint-staged
-* prettier
-* prisma
-* supertest
-* ts-node-dev
-* typescript
-* vitest
+- @types/cors
+- @types/express
+- @types/node
+- @typescript-eslint/eslint-plugin
+- @typescript-eslint/parser
+- eslint
+- husky
+- lint-staged
+- prettier
+- prisma
+- supertest
+- ts-node-dev
+- typescript
+- vitest
