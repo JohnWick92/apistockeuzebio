@@ -8,7 +8,7 @@ export default class RetrieveUserService {
       .findFirst({
         where: { login: login },
       })
-      .finally(() => prisma.$disconnect())
+      .finally(async () => await prisma.$disconnect())
     return User
   }
 }

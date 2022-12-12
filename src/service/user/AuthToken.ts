@@ -8,7 +8,7 @@ export default class AuthTokenUserService {
       .findFirst({
         where: { token: token },
       })
-      .finally(() => prisma.$disconnect())
+      .finally(async () => await prisma.$disconnect())
     if (User) {
       const AuthUser = {
         login: User.login,

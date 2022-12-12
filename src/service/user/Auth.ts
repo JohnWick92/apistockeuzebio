@@ -9,10 +9,10 @@ export default class AuthUserService {
       .findFirst({
         where: { login: login },
       })
-      .finally(() => prisma.$disconnect())
+      .finally(async () => await prisma.$disconnect())
 
     if (User) {
-      if (compare(password, User.password)) {
+      if (await compare(password, User.password)) {
         const AuthUser = {
           login: User.login,
           name: User.name,

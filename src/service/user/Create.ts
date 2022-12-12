@@ -17,7 +17,7 @@ export default class CreateUserService {
           code_pk: randomUUID(),
         },
       })
-      .finally(() => prisma.$disconnect())
+      .finally(async () => await prisma.$disconnect())
     return response
   }
 }

@@ -14,7 +14,7 @@ export default class UpdateUserService {
         },
         where: { code_pk: User.code_pk },
       })
-      .finally(() => prisma.$disconnect())
+      .finally(async () => await prisma.$disconnect())
     return response
   }
 }

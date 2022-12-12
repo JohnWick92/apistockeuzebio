@@ -7,7 +7,7 @@ export default class DeleteUserService {
       .delete({
         where: { code_pk: code_pk },
       })
-      .finally(() => prisma.$disconnect())
+      .finally(async () => await prisma.$disconnect())
     return response
   }
 }
