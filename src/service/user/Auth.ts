@@ -5,9 +5,12 @@ import { compare } from 'bcryptjs'
 export default class AuthUserService {
   async execute(login: string, password: string) {
     const prisma = new PrismaClient()
-    const User: UserProps = await prisma.user.findFirst({
-      where: { login: login },
-    })
+    const User: UserProps = await prisma.user
+      .findFirst({
+        where: { login: login },
+      })
+      .finally(() => prisma.$disconnect())
+
     if (User) {
       if (compare(password, User.password)) {
         const AuthUser = {

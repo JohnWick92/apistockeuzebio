@@ -4,9 +4,11 @@ import { PrismaClient } from '@prisma/client'
 export default class AuthTokenUserService {
   async execute(token: string) {
     const prisma = new PrismaClient()
-    const User: UserProps = await prisma.user.findFirst({
-      where: { token: token },
-    })
+    const User: UserProps = await prisma.user
+      .findFirst({
+        where: { token: token },
+      })
+      .finally(() => prisma.$disconnect())
     if (User) {
       const AuthUser = {
         login: User.login,
