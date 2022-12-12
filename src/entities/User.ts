@@ -3,6 +3,7 @@ export interface UserProps {
   name: string
   login: string
   password: string
+  token: string
 }
 
 export class User {
