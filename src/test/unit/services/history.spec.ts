@@ -26,14 +26,14 @@ describe('History service test switch', () => {
   })
 
   it(' should find one history if exists', async () => {
-    const findOneHistory = new FindOneHistoryService()
-    const response: HistoryProps = await findOneHistory.execute('1')
+    const findOneHistoryService = new FindOneHistoryService()
+    const response: HistoryProps = await findOneHistoryService.execute('1')
     expect(response).toHaveProperty('description')
   })
 
   it(' should retrieve all existing histiory', async () => {
-    const retrieveHistory = new RetriveHistoryService()
-    const response: HistoryProps[] = await retrieveHistory.execute()
+    const retrieveHistoryService = new RetriveHistoryService()
+    const response: HistoryProps[] = await retrieveHistoryService.execute()
     expect(response.length).toBeGreaterThan(0)
   })
 
@@ -51,11 +51,13 @@ describe('History service test switch', () => {
   })
 
   it(' should update a history if exists', async () => {
-    const findOneHistory = new FindOneHistoryService()
-    const updateHistory = new UpdateHistoryService()
-    const exisitingHistory: HistoryProps = await findOneHistory.execute('1')
+    const findOneHistoryService = new FindOneHistoryService()
+    const updateHistoryService = new UpdateHistoryService()
+    const exisitingHistory: HistoryProps = await findOneHistoryService.execute(
+      '1'
+    )
     exisitingHistory.quantity_used = 2
-    const response = await updateHistory.execute(exisitingHistory)
+    const response = await updateHistoryService.execute(exisitingHistory)
     expect(response).toHaveProperty('description')
   })
 

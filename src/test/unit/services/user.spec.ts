@@ -1,5 +1,6 @@
 import AuthTokenUserService from '../../../service/user/AuthToken'
-import RetrieveUserService from '../../../service/user/Retrieve'
+import RetriveUserService from '../../../service/user/Retrive'
+import FindOneUserService from '../../../service/user/FindOne'
 import CreateUserService from '../../../service/user/Create'
 import DeleteUserService from '../../../service/user/Delete'
 import UpdateUserService from '../../../service/user/Update'
@@ -23,16 +24,22 @@ describe('User service test switch', () => {
     expect(response).toHaveProperty('code_pk')
   })
 
-  it(' should retrieve an existing user', async () => {
-    const retrieveUserService = new RetrieveUserService()
-    const response: UserProps = await retrieveUserService.execute('service')
+  it(' should retrive an existing user', async () => {
+    const retrieveUserService = new RetriveUserService()
+    const response: UserProps[] = await retrieveUserService.execute()
+    expect(response).toHaveProperty('code_pk')
+  })
+
+  it(' should find one an existing user', async () => {
+    const findOneUserService = new FindOneUserService()
+    const response: UserProps = await findOneUserService.execute('service')
     expect(response).toHaveProperty('code_pk')
   })
 
   it(' should update an existing user', async () => {
     const updateUserService = new UpdateUserService()
-    const retrieveUserService = new RetrieveUserService()
-    const existingUser: UserProps = await retrieveUserService.execute('service')
+    const findOneUserService = new FindOneUserService()
+    const existingUser: UserProps = await findOneUserService.execute('service')
     existingUser.name = 'John Doe update'
     const response: UserProps = await updateUserService.execute(existingUser)
     expect(response).property('name').equals('John Doe update')
@@ -58,8 +65,8 @@ describe('User service test switch', () => {
 
   it(' should retrieve the auth info if token is valid', async () => {
     const authToken = new AuthTokenUserService()
-    const retrieveUserService = new RetrieveUserService()
-    const existingUser: UserProps = await retrieveUserService.execute('service')
+    const findOneUserService = new FindOneUserService()
+    const existingUser: UserProps = await findOneUserService.execute('service')
     const response = await authToken.execute(existingUser.token)
     expect(response).toHaveProperty('code_pk')
   })
@@ -73,8 +80,8 @@ describe('User service test switch', () => {
   it(' should delete an exisiting user', async () => {
     const login = 'service'
     const deleteUserService = new DeleteUserService()
-    const retrieveUserService = new RetrieveUserService()
-    const existingUser: UserProps = await retrieveUserService.execute(login)
+    const findOneUserService = new FindOneUserService()
+    const existingUser: UserProps = await findOneUserService.execute(login)
     const response: UserProps = await deleteUserService.execute(
       existingUser.code_pk
     )
