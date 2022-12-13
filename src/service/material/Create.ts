@@ -16,7 +16,7 @@ export default class CreateMaterialService {
           code_pk: randomUUID(),
         },
       })
-      .finally(async () => prisma.$disconnect())
+      .finally(async () => await prisma.$disconnect())
     return response
   }
 }

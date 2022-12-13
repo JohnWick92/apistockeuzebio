@@ -17,7 +17,7 @@ export default class UpdateMaterialService {
           code_material: Material.code_material,
         },
       })
-      .finally(async () => prisma.$disconnect())
+      .finally(async () => await prisma.$disconnect())
     return response
   }
 }

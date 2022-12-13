@@ -9,7 +9,7 @@ export default class FindOneMaterialService {
           code_material: code_material,
         },
       })
-      .finally(async () => prisma.$disconnect())
+      .finally(async () => await prisma.$disconnect())
     return response
   }
 }

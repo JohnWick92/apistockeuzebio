@@ -9,7 +9,7 @@ export default class RetrieveMaterialService {
           description: 'asc',
         },
       })
-      .finally(async () => prisma.$disconnect())
+      .finally(async () => await prisma.$disconnect())
     return response
   }
 }
