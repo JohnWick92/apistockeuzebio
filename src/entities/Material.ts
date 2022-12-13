@@ -36,5 +36,8 @@ export class Material {
 
   constructor(props: MaterialProps) {
     this.props = props
+
+    if (this.shelf_life < new Date())
+      throw new Error('The product is no more usable')
   }
 }
