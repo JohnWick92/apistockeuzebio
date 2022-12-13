@@ -1,6 +1,6 @@
 import { randomUUID } from 'crypto'
 import { describe, it, expect } from 'vitest'
-import { History } from '../../entities/History'
+import { History } from '../../../entities/History'
 
 describe('History entity test switch', () => {
   it(' should create a instancy of History', () => {
