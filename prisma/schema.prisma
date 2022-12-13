@@ -17,9 +17,9 @@ model user {
 
 model history {
   code_pk       String   @id
-  code_material String   @unique
+  code_material String   
   description   String
-  batch         String   @unique
+  batch         String   
   shelf_life    DateTime
   quantity_used Int
   date_of_use   DateTime
