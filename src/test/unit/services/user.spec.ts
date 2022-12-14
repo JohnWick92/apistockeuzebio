@@ -27,7 +27,7 @@ describe('User service test switch', () => {
   it(' should retrive an existing user', async () => {
     const retrieveUserService = new RetriveUserService()
     const response: UserProps[] = await retrieveUserService.execute()
-    expect(response).toHaveProperty('code_pk')
+    expect(response.length).toBeGreaterThan(0)
   })
 
   it(' should find one an existing user', async () => {

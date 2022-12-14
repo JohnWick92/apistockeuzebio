@@ -25,16 +25,21 @@ describe('History service test switch', () => {
     expect(response).toHaveProperty('description')
   })
 
-  it(' should find one history if exists', async () => {
-    const findOneHistoryService = new FindOneHistoryService()
-    const response: HistoryProps = await findOneHistoryService.execute('1')
-    expect(response).toHaveProperty('description')
-  })
-
   it(' should retrieve all existing histiory', async () => {
     const retrieveHistoryService = new RetriveHistoryService()
     const response: HistoryProps[] = await retrieveHistoryService.execute()
     expect(response.length).toBeGreaterThan(0)
+  })
+
+  it(' should find one history if exists', async () => {
+    const retrieveHistoryService = new RetriveHistoryService()
+    const exisitingHistoryArray: HistoryProps[] =
+      await retrieveHistoryService.execute()
+    const findOneHistoryService = new FindOneHistoryService()
+    const response: HistoryProps = await findOneHistoryService.execute(
+      exisitingHistoryArray[0].code_pk
+    )
+    expect(response).toHaveProperty('description')
   })
 
   it(' should find by date existing histiory', async () => {
@@ -51,10 +56,13 @@ describe('History service test switch', () => {
   })
 
   it(' should update a history if exists', async () => {
+    const retrieveHistoryService = new RetriveHistoryService()
+    const exisitingHistoryArray: HistoryProps[] =
+      await retrieveHistoryService.execute()
     const findOneHistoryService = new FindOneHistoryService()
     const updateHistoryService = new UpdateHistoryService()
     const exisitingHistory: HistoryProps = await findOneHistoryService.execute(
-      '1'
+      exisitingHistoryArray[0].code_pk
     )
     exisitingHistory.quantity_used = 2
     const response = await updateHistoryService.execute(exisitingHistory)
@@ -62,8 +70,13 @@ describe('History service test switch', () => {
   })
 
   it(' should delete a existing history if exists', async () => {
+    const retrieveHistoryService = new RetriveHistoryService()
+    const exisitingHistoryArray: HistoryProps[] =
+      await retrieveHistoryService.execute()
     const deleteHistoryService = new DeleteHistoryService()
-    const response = await deleteHistoryService.execute('1')
+    const response = await deleteHistoryService.execute(
+      exisitingHistoryArray[0].code_pk
+    )
     expect(response).toHaveProperty('description')
   })
 })
