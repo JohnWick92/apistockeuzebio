@@ -1,4 +1,5 @@
 import express, { Response, Request } from 'express'
+import router from './routes'
 import cors from 'cors'
 
 const app = express()
@@ -8,6 +9,8 @@ app.use(cors())
 app.use(express.urlencoded({ extended: true }))
 
 app.use(express.json())
+
+app.use(router)
 
 app.use((err: Error, resquest: Request, response: Response) => {
   if (err instanceof Error)
