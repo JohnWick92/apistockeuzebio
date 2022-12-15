@@ -1,0 +1,15 @@
+{
+  "name": "stockapi",
+  "version": "2",
+  "public": false,
+  "build": {
+    "src": "dist/index.js",
+    "use": "@vercel/node"
+  },
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "dist/index.js"
+    }
+  ]
+}
